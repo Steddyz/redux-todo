@@ -2,9 +2,17 @@ import { useState } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList/TodoList";
 import Form from "./components/Form/Form";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./store/todoSlice";
 
 function App() {
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
+
+  const addTask = () => {
+    dispatch(addTodo({ text }));
+    setText("");
+  };
 
   const deleteTodo = (todoId) => {
     // setTodos(todos.filter((todo) => todo.id !== todoId));
@@ -24,9 +32,9 @@ function App() {
 
   return (
     <div className="App">
-      <Form text={text} setText={setText} addTodo={addTodo} />
+      <Form text={text} setText={setText} addTodo={addTask} />
 
-      <TodoList ToggleCompleted={ToggleCompleted} deleteTodo={deleteTodo} />
+      <TodoList />
     </div>
   );
 }
