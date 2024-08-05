@@ -13,11 +13,18 @@ const todoSlice = createSlice({
         completed: false,
       });
     },
-    deleteTodo(state, action) {},
-    ToggleCompleted(state, action) {},
+    deleteTodo(state, action) {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+    },
+    toggleCompleted(state, action) {
+      const toggledTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      toggledTodo.completed = !toggledTodo.completed;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, ToggleCompleted } = todoSlice.actions;
+export const { addTodo, deleteTodo, toggleCompleted } = todoSlice.actions;
 
 export default todoSlice.reducer;
