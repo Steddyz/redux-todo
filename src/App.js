@@ -3,7 +3,7 @@ import "./App.css";
 import TodoList from "./components/TodoList/TodoList";
 import Form from "./components/Form/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, fetchTodos } from "./store/todoSlice";
+import { addNewTodo, fetchTodos } from "./store/todoSlice";
 
 function App() {
   const [text, setText] = useState("");
@@ -11,7 +11,7 @@ function App() {
   const dispatch = useDispatch();
 
   const addTask = () => {
-    dispatch(addTodo({ text }));
+    dispatch(addNewTodo(text));
     setText("");
   };
 
